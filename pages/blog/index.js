@@ -1,4 +1,4 @@
-function bloglist(){
+export default function Bloglist(){
     return(
         <>
             <ul>
@@ -9,4 +9,3 @@ function bloglist(){
         </>
     )
 }
-export default bloglist
