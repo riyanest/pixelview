@@ -16,14 +16,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header/> 
+
       <main className={styles.main}>
-        <Header/>
-        <WebDev/>
+      
+      
+        {/* <WebDev/>
         <Innovation/>
         <Process/>
         <Collaborative/>
         <Costing/>
-        <Footer/>
+        <Footer/> */}
       </main>
 
     </div>
