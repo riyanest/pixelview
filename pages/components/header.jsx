@@ -29,7 +29,7 @@ const Header = () => {
     <>
     <div className="header">
         <h1 style={{margin:"10px"}}>PIXEL VIEW</h1>
-        <button class="menuButton" onClick={menu}>
+        <button className="menuButton" onClick={menu}>
             
               <div id="bar1" className="bar"></div>
               <div id="bar2" className="bar"></div>

@@ -1,23 +1,43 @@
 import { useRouter } from "next/router"
 import Header from '../components/header'
+import { useState } from "react";
 import db from '../api/firebase'
-import { collection, doc, getDoc } from "firebase/firestore"; 
+import { collection, doc, getDocs } from "firebase/firestore"; 
+import { useEffect } from "react";
 // const { pid } = req.query
-    const ref = doc(collection(db,"blogs"));
-    const querySnapshot=await getDoc(ref);
+    // const ref = doc(collection(db,"blogs"));
+    // const querySnapshot=await getDoc(ref);
     
 
 const Blog=()=>{
     const router=useRouter()
     const blogid=router.query.blogid
+    const [blogs,setBlog]=useState([{}])
+    useEffect(()=>{
+        ;(async (done)=>{
+                const colref=collection(db,'blogs')
+                const snapshots=await getDocs(colref)
+                snapshots.forEach((doc) => {
+                    let temp=blogs
+                    temp.push(doc.data())
+                    setBlog(temp)                    
+                    console.log(blogs)
+                  });
+
+        })()
+    },[])
+    
     return(
         <>  
             <Header/>
-            <h1>blog no.{blogid}</h1>
-            <p>
+            <h2>blog no.{blogid}</h2>
+                   {blogs.forEach((doc) => 
+                    <div>         
+                {/* <h1>{doc.data()}</h1> */}
+                {/* <p>{doc.data()}</p> */}
+                </div>
+                )} 
 
-                {querySnapshot.exists()? querySnapshot.data(): "No such document!"}
-            </p>
         </>
     )
 }
