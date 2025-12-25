@@ -1,4 +1,7 @@
+'use client';
+
 import Head from 'next/head'
+// import Spline from '@splinetool/react-spline/next';
 import styles from '../styles/Home.module.css'
 import Header from './components/header'
 import Footer from './components/footer'
@@ -7,6 +10,16 @@ import Process from './components/process'
 import Innovation from './components/innovation'
 import Collaborative from './components/collaborative'
 import Costing from './components/costing'
+// import Image from 'next/image'
+// ✅ ADD THESE LINES INSTEAD
+
+import dynamic from 'next/dynamic';
+
+const Spline = dynamic(() => import('@splinetool/react-spline'), {
+  ssr: false, // This forces it to run only in the browser
+  loading: () => <div>Loading 3D Scene...</div>,
+});
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -19,8 +32,13 @@ export default function Home() {
       <Header/> 
 
       <main className={styles.main}>
-      
-      
+        <Spline
+          scene="https://prod.spline.design/NyHvqJ0zYy6wqR-c/scene.splinecode" 
+        />      
+        {/* <Spline
+        scene="https://prod.spline.design/Og15Tj-QL2lgViVN/scene.splinecode" 
+        className="h-full w-full"
+      /> */}
         {/* <WebDev/>
         <Innovation/>
         <Process/>
